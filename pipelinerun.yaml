@@ -1,0 +1,17 @@
+kind: PipelineRun
+apiVersion: tekton.dev/v1beta1
+metadata:
+  name: run-basic-pipeline-from-git-2
+spec:
+  pipelineRef:
+    resolver: git
+    params:
+    - name: url
+      value: https://github.com/jtvertigo/tekton-resolvers
+    - name: revision
+      value: add-a-simple-pipeline
+    - name: pathInRepo
+      value: pipeline.yaml
+  params:
+  - name: username
+    value: anna
