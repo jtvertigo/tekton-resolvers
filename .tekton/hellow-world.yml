@@ -1,0 +1,29 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline1
+  namespace: tekton-cicd
+spec:
+  tasks:
+    - name: pipeline1
+      taskRef:
+        name: task-echo
+---
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: task-echo
+  namespace: tekton-cicd
+spec:
+  steps:
+    - name: task-debug
+      image: alpine:3.17
+      script: |
+        #!/bin/sh
+        echo "Hello World!"
+    - name: task-debug2
+      image: alpine:3.17
+      command:
+        - echo
+      args:
+        - "Hello World, again!"
